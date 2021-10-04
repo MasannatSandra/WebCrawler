@@ -43,7 +43,7 @@ public class Count
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Map<String,Integer> words=new HashMap<String, Integer>();
         
-        File folder = new File("C:\\text - en");
+        File folder = new File("text - en");
         File[] listOfFiles = folder.listFiles();
         String word="";
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -53,7 +53,7 @@ public class Count
                 word = FileUtils.readFileToString(file);
             }
             //read through word which contain all the files 
-            CountWords(word,words);
+            CountWords("text - en",words);
             System.out.println(words);
         }
     }
