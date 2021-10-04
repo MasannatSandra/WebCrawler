@@ -12,14 +12,14 @@ public class Analysis {
         //hashmap key is the word, value is the count
         HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
         //change the File name to the folder you want to loop in
-        File dir = new File("./text - en");
+        File dir = new File("./text - pt");
         for (File file : dir.listFiles()) {
             try {
                 Scanner myReader = new Scanner(file);
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
                     //only read letters and make all lowercase
-                    String[] words = data.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+                    String[] words = data.replaceAll("[^\\p{L} ]", "").toLowerCase().split("\\s+");
                     for (String word : words){
                         //if the word is already in the hashmap update the value by 1
                         if (wordCount.containsKey(word)){
