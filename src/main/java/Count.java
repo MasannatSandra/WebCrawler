@@ -2,6 +2,7 @@ package count;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -11,6 +12,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import org.apache.commons.io.FileUtils;
+
 
 public class Count
 {
@@ -19,7 +22,7 @@ public class Count
         Scanner file = new Scanner (new File(filename));
         while(file.hasNext()){
             String word = file.next();
-            
+            //punct dont work, idgaf will try later
             Integer count = words.get(word.replaceAll("\\p{Punct}","").toLowerCase());
             if(count != null)
                 count++;
@@ -37,20 +40,21 @@ public class Count
         }
         file.close();
     }
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         Map<String,Integer> words=new HashMap<String, Integer>();
         
-        File folder = new File("text - en.zip");
+        File folder = new File("C:\\text - en");
         File[] listOfFiles = folder.listFiles();
-        
+        String word="";
         for (int i = 0; i < listOfFiles.length; i++) {
             File file = listOfFiles[i];
             if (file.isFile() && file.getName().endsWith(".txt")) {
-                //FileUtils?
-                String content = FileUtils.readFileToString(file);
+                //idk why readFileToString get cross out
+                word = FileUtils.readFileToString(file);
+            }
+            //read through word which contain all the files 
+            CountWords(word,words);
+            System.out.println(words);
         }
-            //replace 2.txt with text - en.zip
-        CountWords("2.txt",words);
-        System.out.println(words);
     }
 } 
