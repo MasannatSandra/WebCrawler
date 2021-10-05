@@ -9,10 +9,11 @@ import java.util.Comparator;
 
 public class Analysis {
     public static void main(String... args) {
+        int total = 0;
         //hashmap key is the word, value is the count
         HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
         //change the File name to the folder you want to loop in
-        File dir = new File("./text - pt");
+        File dir = new File("./text - en");
         for (File file : dir.listFiles()) {
             try {
                 Scanner myReader = new Scanner(file);
@@ -21,6 +22,7 @@ public class Analysis {
                     //only read letters and make all lowercase
                     String[] words = data.replaceAll("[^\\p{L} ]", "").toLowerCase().split("\\s+");
                     for (String word : words){
+                        total++;
                         //if the word is already in the hashmap update the value by 1
                         if (wordCount.containsKey(word)){
                             int newVal = wordCount.get(word)+1;
@@ -54,5 +56,6 @@ public class Analysis {
         for (Map.Entry<String, Integer> x : list) {
             System.out.println(x);
         }
+        System.out.println("total word count: " + total);
     }//end of main
 }
