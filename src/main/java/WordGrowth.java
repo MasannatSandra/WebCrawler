@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class WordGrowth {
     public static void main(String... args) {
-        String vocab = "the";
         //hashmap key is the word, value is the count
         HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
         //change the File name to the folder you want to loop in
@@ -32,8 +31,8 @@ public class WordGrowth {
             } catch (Exception e) {
                 System.out.println("an error oops");
             }//end of catch
-            System.out.println("File: " + file);
-            System.out.println("vocab count: " + wordCount.get(vocab));
+//            System.out.println("File: " + file);
+            System.out.println(wordCount.size());
         }//end of file loop
     }//end of main
 }
