@@ -4,11 +4,12 @@ import java.util.Scanner;
 
 public class WordGrowth {
     public static void main(String... args) {
+        //keep track of the total words
         int total = 0;
         //hashmap key is the word, value is the count
         HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
         //change the File name to the folder you want to loop in
-        File dir = new File("./text - ru");
+        File dir = new File("./text - en");
         for (File file : dir.listFiles()) {
             try {
                 Scanner myReader = new Scanner(file);
@@ -21,6 +22,7 @@ public class WordGrowth {
                         if (wordCount.containsKey(word)){
                             int newVal = wordCount.get(word)+1;
                             wordCount.replace(word, newVal);
+                            //not unique but is a word
                             total++;
                         }
                         else if(word.equals("")){
@@ -30,6 +32,7 @@ public class WordGrowth {
                         //if word is new add it to hash map with a value of q
                         else {
                             wordCount.put(word,1);
+                            //unique but is a word
                             total++;
                         }
                     }
@@ -38,8 +41,10 @@ public class WordGrowth {
             } catch (Exception e) {
                 System.out.println("an error oops");
             }//end of catch
-//            System.out.println("File: " + file);
-//            System.out.println(" " + fileCount+" ");
+            System.out.println("File: " + file);
+            //prints unique word count (words in vocabulary)
+            System.out.println(wordCount.size());
+            //prints total word count (words in collection)
             System.out.println(total);
         }//end of file loop
     }//end of main
