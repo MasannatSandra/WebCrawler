@@ -3,6 +3,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+import org.apache.commons.io.FileUtils;
 
 
 public class Count
@@ -17,6 +27,10 @@ public class Count
             //word is the cleaned up text
             String word = read.replaceAll("[^\\p{L} ]","").toLowerCase();
             if(count != null) {
+            String word = file.next();
+            //punct dont work, idgaf will try later
+            Integer count = words.get(word.replaceAll("\\p{Punct}","").toLowerCase());
+            if(count != null)
                 count++;
                 words.replace(word, count);
             }
@@ -70,3 +84,19 @@ public class Count
         }//end of main
 }
 
+        
+        File folder = new File("C:\\text - en");
+        File[] listOfFiles = folder.listFiles();
+        String word="";
+        for (int i = 0; i < listOfFiles.length; i++) {
+            File file = listOfFiles[i];
+            if (file.isFile() && file.getName().endsWith(".txt")) {
+                //idk why readFileToString get cross out
+                word = FileUtils.readFileToString(file);
+            }
+            //read through word which contain all the files 
+            CountWords(word,words);
+            System.out.println(words);
+        }
+    }
+} 
